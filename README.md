@@ -1,8 +1,11 @@
 Dependencies
 ==
-python 2.7.9</br>
-curses 2.2</br>
-numpy 1.9.1</br>
+
+```
+python 2.7.9
+curses 2.2
+numpy 1.13.3
+```
 
 Run
 ==
