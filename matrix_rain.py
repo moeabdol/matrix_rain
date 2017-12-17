@@ -1,11 +1,15 @@
+#!/usr/bin/env python
 import csv
 import curses
 import locale
 import numpy as np
 import time
 
+PATH = 'hex.csv'
+SLEEP = 0.1
+
 class MatrixRain(object):
-    def __init__(self, path='hex.csv'):
+    def __init__(self, path=PATH):
         locale.setlocale(locale.LC_ALL, '')
 
         self.scr = curses.initscr()
@@ -21,8 +25,8 @@ class MatrixRain(object):
 
         self.height = height
         self.width = width
-        self.matrix = np.zeros((height, width))
-        self.cloud = np.zeros((width,))
+        self.matrix = np.zeros((self.height, self.width))
+        self.cloud = np.zeros((self.width,))
         self.charset = self._import_csv(path)
 
         self._rain()
@@ -31,10 +35,10 @@ class MatrixRain(object):
         try:
             open(path, 'rt')
         except TypeError as e:
-            print 'Error', e.message
+            print('Error', e.message)
             raise TypeError
         except IOError as e:
-            print 'Error', e.strerror
+            print('Error', e.strerror)
             raise IOError
         finally:
             with open(path, 'rt') as file_:
@@ -80,13 +84,13 @@ class MatrixRain(object):
                         if index != 0:
                             hex_string = self.charset[index]
                             decimal = int(hex_string, 16)
-                            utf8 = unichr(decimal)
+                            utf8 = chr(decimal)
                             self.scr.addstr(i, j, utf8.encode('utf-8'), curses.color_pair(1))
                         else:
                             self.scr.addstr(i, j, ' ')
 
             self.scr.refresh()
-            time.sleep(0.1)
+            time.sleep(SLEEP)
             quit = self.scr.getch()
 
         curses.endwin()

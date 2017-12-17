@@ -1,12 +1,30 @@
 Dependencies
 ==
-python 2.7.9</br>
-curses 2.2</br>
-numpy 1.9.1</br>
+
+```
+python 3.6.3
+curses 2.2
+numpy 1.13.3
+```
 
 Run
 ==
-$ python matrix_rain.py</br>
-press 'q' to exit.</br>
+
+Create virtualenv
+
+```
+$ virtualenv venv
+$ source venv/bin/activate
+$ python --version
+Python 3.6.
+```
+
+Run
+
+```
+$ python matrix_rain.py
+```
+
+press `q` to exit
 
 ![Alt screenshot](screenshot.png?raw=true "Matrix Rain")
